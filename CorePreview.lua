@@ -63,7 +63,7 @@ local orig_hl = CardArea.parse_highlighted
 function CardArea:parse_highlighted()
    orig_hl(self)
    if not FN.PRE.lock_updates and FN.PRE.show_preview then
-      FN.PRE.show_preview = false
+      FN.PRE.show_preview = true
    end
    FN.PRE.add_update_event("immediate")
 end
@@ -127,7 +127,7 @@ function FN.PRE.update_on_card_order_change(cardarea)
          FN.PRE.hand_order = prev_order
       end
       if FN.PRE.show_preview and not FN.PRE.lock_updates then
-         FN.PRE.show_preview = false
+         FN.PRE.show_preview = true
       end
       FN.PRE.add_update_event("immediate")
    end

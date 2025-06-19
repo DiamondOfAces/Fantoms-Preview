@@ -15,7 +15,7 @@ FN.PRE = {
    },
    joker_order = {},
    hand_order = {},
-   show_preview = false,
+   show_preview = true,
    lock_updates = false,
    on_startup = true,
    five_second_coroutine = nil
@@ -29,20 +29,19 @@ function FN.PRE.start_new_coroutine()
    -- Create and start a new coroutine
    FN.PRE.five_second_coroutine = coroutine.create(function()
       -- Show UI updates
-      FN.PRE.lock_updates = true
-      FN.PRE.show_preview = true
+      FN.PRE.lock_updates = false
       FN.PRE.add_update_event("immediate")  -- Force UI refresh
 
-      local start_time = os.time()
-      while os.time() - start_time < 5 do
-         FN.PRE.simulate()  -- Force a simulation run
-         FN.PRE.add_update_event("immediate")  -- Ensure UI updates
-         coroutine.yield()  -- Allow game to continue running
-      end
+      --local start_time = os.time()
+      --while os.time() - start_time < 5 do
+         --FN.PRE.simulate()  -- Force a simulation run
+         --FN.PRE.add_update_event("immediate")  -- Ensure UI updates
+         --coroutine.yield()  -- Allow game to continue running
+      --end
       -- Delay for 5 seconds
-      FN.PRE.lock_updates = false
-      FN.PRE.show_preview = true
-      FN.PRE.add_update_event("immediate")  -- Refresh UI again
+      --FN.PRE.lock_updates = false
+	  --FN.PRE.show_preview = true
+      --FN.PRE.add_update_event("immediate")  -- Refresh UI again
    end)
 
    coroutine.resume(FN.PRE.five_second_coroutine)  -- Start it immediately
